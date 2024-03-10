@@ -5,12 +5,12 @@ using UnityEngine;
 
 namespace Entities
 {
+    /// <summary>
+    /// Class that manages how the enemies behave
+    /// </summary>
     public class EnemyEntity : BaseEntity, ILifespan
     {
         [Header("Enemy Entity")]
-        [SerializeField]
-        private GameObject explodePrefab;
-
         [SerializeField, Tooltip("Determines if, on death, its' bullets will be destroyed")]
         private bool destroyBulletsOnDeath = false;
 
@@ -19,7 +19,7 @@ namespace Entities
             if (fromPlayer)
             {
                 // Explode
-                GameObject obj = ObjectPool.Instance.GetPooledObject(this.explodePrefab.name, "Explosions");
+                GameObject obj = ObjectPool.Instance.GetRandomObject("Explosions");
                 obj.transform.position = this.transform.position;
                 obj.SetActive(true);
 
@@ -28,6 +28,12 @@ namespace Entities
                     foreach (BaseController item in this.GetComponents<BaseController>())
                         item.DestroyBullets();
                 }
+
+                GameObject powerUp = ObjectPool.Instance.GetRandomObject(PowerUps.BasePowerUp.NAMESPACE);
+                powerUp.transform.position = this.transform.position;
+                powerUp.SetActive(true);
+
+                this.PlaySound(this.deathSound);
             }
 
             // Destroy enemy
@@ -37,18 +43,39 @@ namespace Entities
         #region BaseEntity
 
         /// <inheritdoc/>
-        protected override bool ShouldCollide(Collider2D collision) => collision.gameObject.CompareTag("Bullet");
+        protected override bool ShouldCollide(Collider2D collision) => collision.gameObject.CompareTag(TAG_BULLET);
 
         /// <inheritdoc/>
         protected override void OnHealthChanged(float newHealth, float oldHealth, float maxHealth)
         {
             if (newHealth > 0f)
+            {
+                this.PlaySound(this.hitSound);
                 return;
+            }
 
             this.KillSelf(true);
         }
 
         #endregion BaseEntity
+
+        #region SFX
+
+        [SerializeField, Tooltip("Prefab used to play the hit sound")]
+        private GameObject hitSound;
+
+        [SerializeField, Tooltip("Prefab used to play the death sound")]
+        private GameObject deathSound;
+
+        private void PlaySound(GameObject sound)
+        {
+            if (sound == null)
+                return;
+
+            ObjectPool.Instance.GetPooledObject(sound.name, SFX_Object.NAMESPACE);
+        }
+
+        #endregion SFX
 
         #region ILifespan
 

@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Bullets
 {
+    /// <summary>
+    /// Class that manages how the bullets behave
+    /// </summary>
     public class BaseBullet : MonoBehaviour, ILifespan
     {
         public const string NAMESPACE = "Bullets";
@@ -27,19 +30,22 @@ namespace Bullets
         #region Movement
 
         [Header("Movement")]
-        [SerializeField]
+        [SerializeField, Min(0), Tooltip("Determines how fast a projectile goes")]
         private float speed = 1.0f;
 
         [SerializeField, Tooltip("Determines if the projectile will move backwards on the Z axis")]
         private bool moveToZ = true;
 
+        /// <summary>
+        /// Advances the position of the projectile
+        /// </summary>
         private void TickTravel(float elapsed)
         {
             // Move forward
             Vector3 nextPos = this.speed * elapsed * Vector3.up;
 
             if (this.moveToZ)
-                nextPos.z += 0.0001f;
+                nextPos.z += elapsed;
 
             this.transform.Translate(nextPos, Space.Self);
         }

@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Bullet
+  - PowerUp
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -41,6 +43,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Power Ups
+    uniqueID: 2056123315
     locked: 0
   - name: Bullet
     uniqueID: 626271395

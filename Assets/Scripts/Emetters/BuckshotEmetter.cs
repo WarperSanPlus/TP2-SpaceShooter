@@ -47,12 +47,15 @@ namespace Emetters
             return Quaternion.Euler(0, 0, (Mathf.Rad2Deg * angle) - 90f);
         }
 
-        #endregion
+        #endregion BaseEmetter
 
         #region Gizmos
 
         private void OnDrawGizmosSelected()
         {
+            if (this.isRandomAngle)
+                return;
+
             Vector3 dir = -this.transform.up;
             var angle = Mathf.Atan2(dir.y, dir.x);
             var angleVariation = this.angle / this.amount * Mathf.Deg2Rad;
@@ -72,6 +75,6 @@ namespace Emetters
             }
         }
 
-        #endregion
+        #endregion Gizmos
     }
 }

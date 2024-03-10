@@ -11,7 +11,7 @@ namespace Emetters
     /// <summary>
     /// Class that manages how the emetters behave
     /// </summary>
-    public abstract class BaseEmetter : MonoBehaviour, IEnterActivation
+    public abstract class BaseEmetter : MonoBehaviour, IActivatable
     {
         /// <summary>
         /// Initializes this emetter
@@ -21,8 +21,8 @@ namespace Emetters
         public virtual void Init(int targetLayer, Guid author, float cooldown = -1)
         {
             this.gameObject.layer = targetLayer;
-            this.cooldown = Mathf.Max(cooldown, this.cooldown);
             this.author = author;
+            this.cooldown = Mathf.Max(cooldown, this.cooldown);
         }
 
         #region IActivatable
@@ -53,23 +53,25 @@ namespace Emetters
         /// </summary>
         /// <param name="elapsed">Time in seconds since the last call</param>
         /// <param name="shootOnTimerEnd">If the timer reaches zero, should the emetter shoot</param>
-        /// <returns>Has fired the emetter</returns>
+        /// <returns>This call caused the emetter to fire</returns>
         public virtual bool Tick(float elapsed, bool shootOnTimerEnd = true)
         {
             // Reduce timer
             this.timer -= elapsed;
 
+            // If the emetter can't shoot, skip
             if (this.timer > 0f || !shootOnTimerEnd)
                 return false;
 
             this.Fire();
+            
+            // Reset the timer
             this.timer = this.cooldown;
+
             return true;
         }
 
         #endregion Timer
-
-        [Header("Base Emetter")]
 
         #region Fire
 
@@ -117,13 +119,17 @@ namespace Emetters
             }
             else
             {
-                Debug.LogWarning("A projectile was created without a BaseBullet script.");
+                Debug.LogWarning($"\'{currentProjectile.name}\' was created without a BaseBullet script.");
                 currentProjectile.SetLayerRecursive(this.gameObject.layer);
             }
 
             // Reset every IResetable
             foreach (IResetable item in currentProjectile.GetComponents<IResetable>())
                 item.OnReset();
+
+            // Call every IActivatable
+            foreach (IActivatable item in currentProjectile.GetComponents<IActivatable>())
+                item.SetActive(true);
 
             currentProjectile.SetActive(true);
         }
@@ -142,12 +148,12 @@ namespace Emetters
         /// <summary>
         /// Calls every actions that are associated with the start
         /// </summary>
-        public void OnStart() => this.startActions.CallActions();
+        public virtual void OnStart() => this.startActions.CallActions();
 
         /// <summary>
         /// Calls every actions that are associated with the end
         /// </summary>
-        public void OnEnd() => this.endActions.CallActions();
+        public virtual void OnEnd() => this.endActions.CallActions();
 
         #endregion Actions
 
@@ -157,10 +163,8 @@ namespace Emetters
         protected virtual int GetProjectileCount() => 1;
 
         /// <returns><see cref="GameObject"/> that will be used for the current projectile at <paramref name="index"/></returns>
-        protected virtual GameObject GetProjectile(int index)
-            => this.bulletPrefab == null
+        protected virtual GameObject GetProjectile(int index) => this.bulletPrefab == null
             ? null
-            // : ProjectileObjectPool.Instance.GetPooledObject(this.bulletPrefab.name);
             : ObjectPool.Instance.GetPooledObject(this.bulletPrefab.name, BaseBullet.NAMESPACE);
 
         /// <returns>Starting position of the projectile at <paramref name="index"/></returns>

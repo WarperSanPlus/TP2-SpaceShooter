@@ -12,17 +12,11 @@ namespace Emetters
         private bool useOriginRotation = true;
 
         [SerializeField, Tooltip("List of the origins that the emetter will shoot from")]
-        private Transform[] origins = null;
+        private Transform[] origins;
 
         /// <returns>Target to use for the projectile at <paramref name="index"/></returns>
         /// <remarks>If the index is invalid, it will return null</remarks>
-        private Transform GetTarget(int index)
-        {
-            if (this.origins == null)
-                return null;
-
-            return this.origins.Length <= index ? null : this.origins[index];
-        }
+        private Transform GetTarget(int index) => this.origins != null && this.origins.Length > index ? this.origins[index] : null;
 
         #region BaseEmetter
 

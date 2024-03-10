@@ -9,6 +9,8 @@ namespace Controllers
     /// </summary>
     public class PlayerController : BaseController
     {
+        private const string TARGET_LAYER = "BulletPlayer";
+
         #region BaseController
 
         /// <inheritdoc/>
@@ -17,14 +19,14 @@ namespace Controllers
             : new BaseEmetter[] { this.emetter };
 
         /// <inheritdoc/>
-        protected override int GetTargetLayerIndex() => LayerMask.NameToLayer("BulletPlayer");
+        protected override int GetTargetLayerIndex() => LayerMask.NameToLayer(TARGET_LAYER);
 
         /// <inheritdoc/>
         protected override float OnTimerEnded()
         {
             // If the player is in automatic
             // If the player wants to shoot
-            if (this.automaticFire && this.requestFire)
+            if (this.isAutomaticFire && this.requestFire)
                 this.TickEmetter(Time.deltaTime, true);
 
             return base.OnTimerEnded();
@@ -35,13 +37,15 @@ namespace Controllers
 
         #endregion BaseController
 
-        [Header("Player Controller")]
-
         #region Emetter
 
         [SerializeField, Tooltip("Emetter used by this controller")]
         private BaseEmetter emetter;
 
+        /// <summary>
+        /// Changes the emetter used to <paramref name="emetter"/>
+        /// </summary>
+        /// <param name="emetter">New emetter to use</param>
         public void SetEmetter(BaseEmetter emetter)
         {
             this.emetter = emetter;
@@ -71,8 +75,8 @@ namespace Controllers
 
         #region Fire
 
-        [SerializeField, Tooltip("Determines if the player has to hold 'Fire' to shoot")]
-        private bool automaticFire = false;
+        [SerializeField, Tooltip("Determines if the player has to hold to shoot")]
+        private bool isAutomaticFire = true;
 
         private bool requestFire = false;
 
@@ -84,9 +88,11 @@ namespace Controllers
             if (!ctx.action.WasPerformedThisFrame())
                 return;
 
-            // If the player is not in automatic mode, handle the shooting
-            if (!this.automaticFire)
-                this.TickEmetter(Time.deltaTime, true);
+            // If the player is in automatic mode, skip the call
+            if (this.isAutomaticFire)
+                return;
+
+            this.TickEmetter(Time.deltaTime, true);
         }
 
         #endregion Fire

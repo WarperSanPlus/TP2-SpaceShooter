@@ -9,15 +9,11 @@ namespace Controllers
     /// <summary>
     /// Class that manages an internal timer for the other controllers
     /// </summary>
-    public abstract class BaseController : MonoBehaviour, IEnterActivation, IResetable
+    public abstract class BaseController : MonoBehaviour, IActivatable, IResetable
     {
-        #region MonoBehaviour
+        private const string TARGET_LAYER = "BulletEnemy";
 
-        // TODO: TO REMOVE
-        private void Start()
-        {
-            this.OnReset();
-        }
+        #region MonoBehaviour
 
         /// <inheritdoc/>
         private void Awake() => this.targetLayer = this.GetTargetLayerIndex();
@@ -52,6 +48,9 @@ namespace Controllers
         /// </summary>
         private float timer;
 
+        /// <summary>
+        /// Advances the timer by <paramref name="elapsed"/>
+        /// </summary>
         private void TimerTick(float elapsed)
         {
             // Decrease timer
@@ -66,7 +65,7 @@ namespace Controllers
 
         /// <returns>Initial value of the timer</returns>
         /// <remarks>
-        /// This is not called for the value of the timer when it loops back
+        /// This will not be the value of the timer when it loops back
         /// </remarks>
         protected virtual float GetStartingTimer() => 0f;
 
@@ -97,7 +96,7 @@ namespace Controllers
         /// <returns>
         /// Index of the layer where the controller targets
         /// </returns>
-        protected virtual int GetTargetLayerIndex() => LayerMask.NameToLayer("BulletEnemy");
+        protected virtual int GetTargetLayerIndex() => LayerMask.NameToLayer(TARGET_LAYER);
 
         #endregion Layer
 
@@ -111,8 +110,7 @@ namespace Controllers
         /// <summary>
         /// Destroys all the bullets created by this controller
         /// </summary>
-        public void DestroyBullets()
-            => ObjectPool.Instance.DisableObjects(
+        public void DestroyBullets() => ObjectPool.Instance.DisableObjects(
                 BaseBullet.NAMESPACE,
                 o => o.TryGetComponent(out BaseBullet bullet) && bullet.Author == this.author
                 );
@@ -131,6 +129,10 @@ namespace Controllers
                 item.Init(this.targetLayer, this.author);
         }
 
+        /// <summary>
+        /// Called when this controller is initialized
+        /// </summary>
+        /// <returns>Emetters to initialize</returns>
         protected virtual Emetters.BaseEmetter[] OnStart() => null;
 
         #endregion Emetter

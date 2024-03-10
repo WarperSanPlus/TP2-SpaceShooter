@@ -22,13 +22,15 @@ namespace Controllers
         protected override BaseEmetter[] OnStart() => new BaseEmetter[] { this.pattern.emetter };
 
         /// <inheritdoc/>
-        protected override float GetStartingTimer() => this.pattern.startTime + this.pattern.duration;
+        protected override float GetStartingTimer() => this.pattern.startTime;
 
         /// <inheritdoc/>
         protected override void OnTimerAdvanced(float timer, float elapsed)
         {
-            if (this.currentState == State.Attack && this.pattern.emetter != null)
-                _ = this.pattern.emetter.Tick(elapsed);
+            if (this.pattern.emetter == null)
+                return;
+
+            _ = this.pattern.emetter.Tick(elapsed, this.currentState == State.Attack);
         }
 
         /// <inheritdoc/>
@@ -38,23 +40,26 @@ namespace Controllers
             this.AdvanceState();
 
             // Set timer depending on the current state
-            var timer = this.currentState switch
+            return this.currentState switch
             {
                 State.Start => this.pattern.startTime,
                 State.Attack => this.pattern.duration,
                 _ => this.pattern.exitTime,
             };
-
-            return timer;
         }
 
         #endregion BaseController
 
         #region States
 
-        [Header("State")]
+        /// <summary>
+        /// Current state of the controller
+        /// </summary>
         protected State currentState;
 
+        /// <summary>
+        /// Possible states of the controller
+        /// </summary>
         protected enum State
         { Start, Attack, End }
 
@@ -68,14 +73,21 @@ namespace Controllers
             if (this.currentState > State.End)
                 this.currentState = State.Start;
 
-            if (this.currentState == State.Start)
-                this.pattern.emetter.OnStart();
-            else if (this.currentState == State.End)
-                this.pattern.emetter.OnEnd();
+            if (this.pattern.emetter != null)
+            {
+                if (this.currentState == State.Start)
+                    this.pattern.emetter.OnStart();
+                else if (this.currentState == State.End)
+                    this.pattern.emetter.OnEnd();
+            }
 
             this.OnStateAdvanced(this.currentState);
         }
 
+        /// <summary>
+        /// Called when the state has been advanced
+        /// </summary>
+        /// <param name="state">New state</param>
         protected virtual void OnStateAdvanced(State state)
         { }
 
@@ -86,7 +98,14 @@ namespace Controllers
         /// <inheritdoc/>
         public override void OnReset()
         {
-            this.currentState = State.End;
+            // Disable if emetter is invalid
+            if (this.pattern.emetter == null)
+            {
+                this.enabled = false;
+                return;
+            }
+
+            this.currentState = State.Start;
             base.OnReset();
         }
 

@@ -12,7 +12,7 @@ namespace Emetters
         private BaseEmetter[] emetters = null;
 
         #region BaseEmetter
-        
+
         /// <inheritdoc/>
         public override void Init(int targetLayer, System.Guid author, float cooldown = -1)
         {
@@ -20,7 +20,7 @@ namespace Emetters
                 item.Init(targetLayer, author, this.cooldown);
         }
 
-        /// <returns>Has fired at least one of the emetters</returns>
+        /// <returns>This call causedd at least one of the emetters to fire</returns>
         /// <inheritdoc/>
         public override bool Tick(float elapsed, bool shootOnTimerEnd = true)
         {
@@ -31,6 +31,24 @@ namespace Emetters
             return hasFireOnce;
         }
 
-        #endregion
+        /// <inheritdoc/>
+        public override void OnStart()
+        {
+            foreach (BaseEmetter item in this.emetters)
+                item.OnStart();
+
+            base.OnStart();
+        }
+
+        /// <inheritdoc/>
+        public override void OnEnd()
+        {
+            foreach (BaseEmetter item in this.emetters)
+                item.OnEnd();
+
+            base.OnEnd();
+        }
+
+        #endregion BaseEmetter
     }
 }

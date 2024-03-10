@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -80,13 +81,30 @@ namespace Singletons
 
             GameObject child = this.FindChildren(infos.parent);
 
-            if (child != null)
-                return child;
+            if (child == null)
+            {
+                if (!this.isEvaluating)
+                    Debug.LogWarning($"Consider increasing the initial amount of \'{prefabName}\'.");
 
-            if (!this.isEvaluating)
-                Debug.LogWarning($"Consider increasing the initial amount of \'{prefabName}\'.");
+                child = this.CreateObject(infos.parent, infos.prefab);
+            }
 
-            return this.CreateObject(infos.parent, infos.prefab);
+            foreach (IResetable item in child.GetComponents<IResetable>())
+                item.OnReset();
+
+            return child;
+        }
+
+        public GameObject GetRandomObject(string @namespace)
+        {
+            // Find namespace child
+            Transform namespaceParent = this.transform.Find(@namespace);
+
+            // Get random child
+            var prefabName = namespaceParent.GetChild(UnityEngine.Random.Range(0, namespaceParent.childCount)).name;
+
+            // Get instance
+            return this.GetPooledObject(prefabName, @namespace);
         }
 
         private GameObject FindChildren(Transform parent)

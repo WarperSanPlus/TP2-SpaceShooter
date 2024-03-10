@@ -362,7 +362,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fairies-touhou_12
+      name: hatted_fairy_red_0
       rect:
         serializedVersion: 2
         x: 0
@@ -383,7 +383,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fairies-touhou_13
+      name: hatted_fairy_red_1
       rect:
         serializedVersion: 2
         x: 32
@@ -404,7 +404,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fairies-touhou_14
+      name: hatted_fairy_red_2
       rect:
         serializedVersion: 2
         x: 64
@@ -425,7 +425,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fairies-touhou_15
+      name: hatted_fairy_red_3
       rect:
         serializedVersion: 2
         x: 96
@@ -446,7 +446,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fairies-touhou_16
+      name: hatted_fairy_red_4
       rect:
         serializedVersion: 2
         x: 128
@@ -467,7 +467,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fairies-touhou_17
+      name: hatted_fairy_red_5
       rect:
         serializedVersion: 2
         x: 160
@@ -488,7 +488,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fairies-touhou_18
+      name: hatted_fairy_red_6
       rect:
         serializedVersion: 2
         x: 192
@@ -509,7 +509,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fairies-touhou_19
+      name: hatted_fairy_red_7
       rect:
         serializedVersion: 2
         x: 224
@@ -530,7 +530,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fairies-touhou_20
+      name: hatted_fairy_red_8
       rect:
         serializedVersion: 2
         x: 256
@@ -551,7 +551,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fairies-touhou_21
+      name: hatted_fairy_red_9
       rect:
         serializedVersion: 2
         x: 288
@@ -572,7 +572,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fairies-touhou_22
+      name: hatted_fairy_red_10
       rect:
         serializedVersion: 2
         x: 320
@@ -593,7 +593,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fairies-touhou_23
+      name: hatted_fairy_red_11
       rect:
         serializedVersion: 2
         x: 352
@@ -1622,7 +1622,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fairies-touhou_72
+      name: fairy_green_0
       rect:
         serializedVersion: 2
         x: 0
@@ -1643,7 +1643,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fairies-touhou_73
+      name: fairy_green_1
       rect:
         serializedVersion: 2
         x: 32
@@ -1664,7 +1664,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fairies-touhou_74
+      name: fairy_green_2
       rect:
         serializedVersion: 2
         x: 64
@@ -1685,7 +1685,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fairies-touhou_75
+      name: fairy_green_3
       rect:
         serializedVersion: 2
         x: 96
@@ -1706,7 +1706,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fairies-touhou_76
+      name: fairy_green_4
       rect:
         serializedVersion: 2
         x: 128
@@ -1727,7 +1727,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fairies-touhou_77
+      name: fairy_green_5
       rect:
         serializedVersion: 2
         x: 160
@@ -1748,7 +1748,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fairies-touhou_78
+      name: fairy_green_6
       rect:
         serializedVersion: 2
         x: 192
@@ -1769,7 +1769,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fairies-touhou_79
+      name: fairy_green_7
       rect:
         serializedVersion: 2
         x: 224
@@ -1790,7 +1790,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fairies-touhou_80
+      name: fairy_green_8
       rect:
         serializedVersion: 2
         x: 256
@@ -1811,7 +1811,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fairies-touhou_81
+      name: fairy_green_9
       rect:
         serializedVersion: 2
         x: 288
@@ -1832,7 +1832,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fairies-touhou_82
+      name: fairy_green_10
       rect:
         serializedVersion: 2
         x: 320
@@ -1853,7 +1853,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fairies-touhou_83
+      name: fairy_green_11
       rect:
         serializedVersion: 2
         x: 352
@@ -2136,18 +2136,6 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      fairies-touhou_12: -301306237
-      fairies-touhou_13: 608554915
-      fairies-touhou_14: -1575446450
-      fairies-touhou_15: 1177392742
-      fairies-touhou_16: -278809084
-      fairies-touhou_17: 840603295
-      fairies-touhou_18: -1314609565
-      fairies-touhou_19: 1877514058
-      fairies-touhou_20: 1830150805
-      fairies-touhou_21: 693662245
-      fairies-touhou_22: 279610374
-      fairies-touhou_23: 683934405
       fairies-touhou_24: 1846777031
       fairies-touhou_25: 613477040
       fairies-touhou_26: 1372407686
@@ -2184,18 +2172,6 @@ TextureImporter:
       fairies-touhou_69: -1201070895
       fairies-touhou_70: 1537227866
       fairies-touhou_71: 778551527
-      fairies-touhou_72: 421050315
-      fairies-touhou_73: 1666123279
-      fairies-touhou_74: 2091916920
-      fairies-touhou_75: 1853700712
-      fairies-touhou_76: -1566376765
-      fairies-touhou_77: -1457640398
-      fairies-touhou_78: 2055945796
-      fairies-touhou_79: -2110699899
-      fairies-touhou_80: 797081980
-      fairies-touhou_81: -675431239
-      fairies-touhou_82: 2121942859
-      fairies-touhou_83: -1722256917
       fairies-touhou_84: -1499931742
       fairies-touhou_85: 1687271947
       fairies-touhou_86: 665398086
@@ -2208,6 +2184,18 @@ TextureImporter:
       fairies-touhou_93: 1689259671
       fairies-touhou_94: 991007033
       fairies-touhou_95: 502466670
+      fairy_green_0: 421050315
+      fairy_green_1: 1666123279
+      fairy_green_10: 2121942859
+      fairy_green_11: -1722256917
+      fairy_green_2: 2091916920
+      fairy_green_3: 1853700712
+      fairy_green_4: -1566376765
+      fairy_green_5: -1457640398
+      fairy_green_6: 2055945796
+      fairy_green_7: -2110699899
+      fairy_green_8: 797081980
+      fairy_green_9: -675431239
       hatted_fairy_blue_0: 817462493
       hatted_fairy_blue_1: -2034266043
       hatted_fairy_blue_10: -1712602693
@@ -2220,6 +2208,18 @@ TextureImporter:
       hatted_fairy_blue_7: 189138914
       hatted_fairy_blue_8: 1067085820
       hatted_fairy_blue_9: -1863288187
+      hatted_fairy_red_0: -301306237
+      hatted_fairy_red_1: 608554915
+      hatted_fairy_red_10: 279610374
+      hatted_fairy_red_11: 683934405
+      hatted_fairy_red_2: -1575446450
+      hatted_fairy_red_3: 1177392742
+      hatted_fairy_red_4: -278809084
+      hatted_fairy_red_5: 840603295
+      hatted_fairy_red_6: -1314609565
+      hatted_fairy_red_7: 1877514058
+      hatted_fairy_red_8: 1830150805
+      hatted_fairy_red_9: 693662245
       hatted_fairy_yellow_0: -1726454039
       hatted_fairy_yellow_1: 546504266
       hatted_fairy_yellow_10: 252126858

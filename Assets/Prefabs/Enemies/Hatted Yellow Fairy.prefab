@@ -72,7 +72,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -98421905
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 769677318, guid: c04be5391f398ce409d8d2a4a489ae24, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -273,7 +273,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -98421905
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 769677318, guid: c04be5391f398ce409d8d2a4a489ae24, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -494,7 +494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc4483bb0dfb49e49ab4770213143539, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 3306931779347359191, guid: 24ddc7f0a8e5c784083d523d415558f1, type: 3}
+  bulletPrefab: {fileID: 3990322647336231179, guid: b445e89253f53564992551cd1fbfac64, type: 3}
   cooldown: 0.1
   startActions: []
   endActions: []
@@ -638,10 +638,6 @@ PrefabInstance:
       value: -40
       objectReference: {fileID: 0}
     - target: {fileID: 352619735050202489, guid: 3d7af90e58b296445a4b81c4862b52ff, type: 3}
-      propertyPath: duration
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 352619735050202489, guid: 3d7af90e58b296445a4b81c4862b52ff, type: 3}
       propertyPath: onArrived.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -707,7 +703,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6631861797895800607, guid: 3d7af90e58b296445a4b81c4862b52ff, type: 3}
       propertyPath: health
-      value: 50
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631861797895800607, guid: 3d7af90e58b296445a4b81c4862b52ff, type: 3}
+      propertyPath: MaxHealth
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6631861797895800607, guid: 3d7af90e58b296445a4b81c4862b52ff, type: 3}
       propertyPath: m_Enabled
@@ -731,15 +731,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9054949487482545741, guid: 3d7af90e58b296445a4b81c4862b52ff, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 9054949487482545741, guid: 3d7af90e58b296445a4b81c4862b52ff, type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 9054949487482545741, guid: 3d7af90e58b296445a4b81c4862b52ff, type: 3}
       propertyPath: m_LocalScale.z
-      value: 3
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 9054949487482545741, guid: 3d7af90e58b296445a4b81c4862b52ff, type: 3}
       propertyPath: m_LocalPosition.x
@@ -787,6 +787,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1176237840418842780, guid: 3d7af90e58b296445a4b81c4862b52ff, type: 3}
+    - {fileID: 8975560063448634741, guid: 3d7af90e58b296445a4b81c4862b52ff, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2049771609392924209, guid: 3d7af90e58b296445a4b81c4862b52ff, type: 3}
@@ -838,8 +839,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pattern:
     startTime: 0
-    duration: 3
-    exitTime: 2
+    duration: 2
+    exitTime: 1
     emetter: {fileID: 2386246019981901765}
 --- !u!114 &5300487601473846148
 MonoBehaviour:

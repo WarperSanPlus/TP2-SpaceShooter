@@ -6,7 +6,7 @@ namespace UtilityScripts
     /// <summary>
     /// Disables the <see cref="GameObject"/> after a certain amount of time
     /// </summary>
-    public class TTD : MonoBehaviour, IResetable
+    public class TTD : MonoBehaviour, IResetable, IActivatable
     {
         #region MonoBehaviour
 
@@ -23,6 +23,7 @@ namespace UtilityScripts
         [SerializeField, Tooltip("Amount of seconds before the gameobject despawns")]
         private float Lifespan = 0f;
 
+        [SerializeField]
         private float lifespanTimer = 0f;
 
         private ILifespan[] iLifeSpans;
@@ -45,12 +46,15 @@ namespace UtilityScripts
         #region IResetable
 
         /// <inheritdoc/>
-        public void OnReset()
-        {
-            this.lifespanTimer = this.Lifespan;
-            this.enabled = true;
-        }
+        public void OnReset() => this.lifespanTimer = this.Lifespan;
 
         #endregion IResetable
+
+        #region IActivatable
+
+        /// <inheritdoc/>
+        public void SetActive(bool isActive) => this.enabled = isActive;
+
+        #endregion IActivatable
     }
 }

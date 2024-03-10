@@ -22,13 +22,6 @@ namespace Controllers
         /// <inheritdoc/>
         protected override BaseEmetter[] OnStart()
         {
-            // Disable if no pattern
-            if (this.patterns == null || this.patterns.Length == 0)
-            {
-                this.enabled = false;
-                return base.OnStart();
-            }
-
             var emetters = new BaseEmetter[this.patterns.Length];
 
             for (var i = 0; i < emetters.Length; i++)
@@ -37,7 +30,34 @@ namespace Controllers
             return emetters;
         }
 
+        /// <inheritdoc/>
+        public override void OnReset()
+        {
+            // Disable if no pattern
+            if (this.patterns == null || this.patterns.Length == 0)
+            {
+                this.enabled = false;
+                return;
+            }
+
+            this.pattern = this.patterns[0];
+            base.OnReset();
+        }
+
         #endregion BaseController
+
+        #region ConstantController
+
+        /// <inheritdoc/>
+        protected override void OnStateAdvanced(State state)
+        {
+            if (this.currentState == State.Start)
+                this.startActions.CallActions();
+            else if (this.currentState == State.End)
+                this.endActions.CallActions();
+        }
+
+        #endregion ConstantController
 
         #region Patterns
 
@@ -50,12 +70,9 @@ namespace Controllers
         /// <summary>
         /// Advances the current pattern of the controller
         /// </summary>
-        /// <returns>
-        /// <inheritdoc cref="OnTimerEnded"/>
-        /// </returns>
         private void AdvancePattern()
         {
-            if (this.currentState != State.End)
+            if (this.patterns.Length == 0)
                 return;
 
             // Increase index
@@ -77,14 +94,6 @@ namespace Controllers
 
         [SerializeField, Tooltip("Actions called when any pattern ends")]
         private EmetterAction[] endActions = null;
-
-        protected override void OnStateAdvanced(State state)
-        {
-            if (this.currentState == State.Start)
-                this.startActions.CallActions();
-            else if (this.currentState == State.End)
-                this.endActions.CallActions();
-        }
 
         #endregion Actions
     }

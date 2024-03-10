@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace Entities
 {
+    /// <summary>
+    /// Class that manages how the players behave
+    /// </summary>
     public class PlayerEntity : BaseEntity
     {
         [Header("Player Entity")]
@@ -35,6 +38,11 @@ namespace Entities
             if (index != -1)
                 this.controller.SetEmetter(this.emetters[index].emetter);
         }
+
+        /// <inheritdoc/>
+        protected override float OnDamageModifier(float amount, bool isAdding) => isAdding 
+            ? base.OnDamageModifier(amount, isAdding)
+            : amount * 5;
 
         #endregion BaseEntity
 

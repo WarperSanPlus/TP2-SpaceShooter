@@ -4,8 +4,14 @@ using UnityEngine;
 
 namespace Entities
 {
-    public class BaseEntity : MonoBehaviour, IEnterActivation, IResetable
+    /// <summary>
+    /// Class that manages how the entities behave
+    /// </summary>
+    public class BaseEntity : MonoBehaviour, IActivatable, IResetable
     {
+        public const string TAG_BULLET = "Bullet";
+        public const string TAG_ENEMY = "Enemy";
+
         #region MonoBehaviour
 
         /// <inheritdoc/>
@@ -45,13 +51,12 @@ namespace Entities
         public virtual void OnReset()
         {
             this.iframes = 0;
-            this.hitBlinkTime = 0;
             this.health = this.MaxHealth;
+            this.hitBlinkSprite.color = Color.white;
+            this.hitBlinkCoroutine = null;
         }
 
         #endregion
-
-        [Header("Base Entity")]
 
         #region I-frames
 
@@ -75,28 +80,50 @@ namespace Entities
 
         private void ManageCollision(Collider2D collider)
         {
-            if (this.ShouldCollide(collider))
+            if (!this.ShouldCollide(collider))
+                return;
+
+            // Depending on the tag, execute a different action
+            if (collider.gameObject.CompareTag(TAG_BULLET) || collider.gameObject.CompareTag(TAG_ENEMY))
+            {
                 this.Damage(1);
+            }
+
+            // Collect the item
+            ICollectable collectable = collider.GetComponentInParent<ICollectable>();
+            collectable?.Collect(this);
         }
 
-        private void Damage(float amount)
+        public void Health(int amount) => this.AlterHealth(amount, true);
+
+        public void Damage(float amount)
         {
             // If the entity is on invincibility
             if (this.iframes != 0 || !this.enabled || this.isInvicible)
+                return;
+
+            this.AlterHealth(amount, false);
+        }
+
+        private void AlterHealth(float amount, bool isAdding)
+        {
+            // If the entity is dead
+            if (this.health <= 0f)
                 return;
 
             // Remember the previous health
             var oldHealth = this.health;
 
             // Calculate the damage amount
-            amount = this.OnDamageModifier(amount);
+            amount = this.OnDamageModifier(amount, isAdding);
 
             // Don't do anything if no damage
             if (amount == 0)
                 return;
 
-            // Reduce health
-            this.health -= amount;
+            // Modify health
+            this.health += isAdding ? amount : -amount;
+            this.health = Mathf.Clamp(this.health, 0, this.MaxHealth);
 
             this.OnHealthChanged(
                 this.health,
@@ -108,16 +135,17 @@ namespace Entities
             if (this.health <= 0f)
                 return;
 
-            this.iframes = Mathf.FloorToInt(this.invincibilityTime / Time.fixedDeltaTime);
-
-            this.TriggerHitBlink();
+            if (!isAdding)
+            {
+                this.iframes = Mathf.FloorToInt(this.invincibilityTime / Time.fixedDeltaTime);
+                this.TriggerHitBlink();
+            }
         }
 
         #endregion Health
 
         #region Hit Blink
 
-        private const float HIT_BLINK_DURATION = 0.15f;
         private const float HIT_BLINK_INTERVAL = 0.05f;
 
         [SerializeField, Tooltip("Sprite to apply the blink effect on")]
@@ -126,16 +154,9 @@ namespace Entities
         [SerializeField, Tooltip("Color of the blink effect")]
         private Color hitBlinkColor;
 
-        private float hitBlinkTime = 0f;
         private Coroutine hitBlinkCoroutine = null;
 
-        private void TriggerHitBlink()
-        {
-            if (this.hitBlinkCoroutine != null)
-                this.hitBlinkTime = 0f;
-            else
-                this.hitBlinkCoroutine = this.StartCoroutine(this.FlashSprite());
-        }
+        private void TriggerHitBlink() => this.hitBlinkCoroutine ??= this.StartCoroutine(this.FlashSprite());
 
         // Taken from: https://forum.unity.com/threads/make-a-sprite-flash.224086/#post-1837621
         private IEnumerator FlashSprite()
@@ -144,13 +165,11 @@ namespace Entities
 
             Color[] colors = { originalColor, this.hitBlinkColor };
 
-            this.hitBlinkTime = 0f;
             var index = 0;
-            while (this.hitBlinkTime < HIT_BLINK_DURATION)
+            while (this.iframes > 0)
             {
                 this.hitBlinkSprite.color = colors[index % 2];
 
-                this.hitBlinkTime += HIT_BLINK_INTERVAL;
                 index++;
                 yield return new WaitForSeconds(HIT_BLINK_INTERVAL);
             }
@@ -175,7 +194,7 @@ namespace Entities
 
         /// <param name="amount">Current amount of damage</param>
         /// <returns>How much damage does the attack do?</returns>
-        protected virtual float OnDamageModifier(float amount) => amount;
+        protected virtual float OnDamageModifier(float amount, bool isAdding) => amount;
 
         /// <summary>
         /// Called when <see cref="FixedUpdate"/> is called

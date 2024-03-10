@@ -386,12 +386,12 @@ TextureImporter:
       name: power-up-0
       rect:
         serializedVersion: 2
-        x: 278
-        y: 599
-        width: 12
-        height: 12
+        x: 276
+        y: 597
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -399,6 +399,195 @@ TextureImporter:
       bones: []
       spriteID: fa645716da305a843bf5fc3ca9648eb8
       internalID: -1129069285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: power-up-1
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 597
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4bfa2268c4467c4ab902136e47f7e1a
+      internalID: -630826333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: power-up-2
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 597
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0915278dc29f88143a555f57b1425ced
+      internalID: -965700936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: power-up-3
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 597
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80447cb2b4b469a4894afb2b08022280
+      internalID: 812590675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: power-up-4
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 597
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00d3640061493c741b7fc0310a6d7aa9
+      internalID: -2134618685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: power-up-5
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 597
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f70e674ce17ffaa45a709b569c89e800
+      internalID: -1107858955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: star-red
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 646
+        width: 16
+        height: 16
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08cb7fafdad663941a30e30f5cd84194
+      internalID: 229207437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: big-star-red
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 523
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 675679844a232da43a9efc51e1fe239d
+      internalID: -1159519261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pellet-red
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 743
+        width: 8
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ce48c3b254d7c84eb1cefeb0cf6729e
+      internalID: 708129500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pellet-green
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 743
+        width: 8
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3e1970b91bcd7e4bb53ae9d72bbc514
+      internalID: 1183408950
       vertices: []
       indices: 
       edges: []
@@ -414,18 +603,27 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      big-star-red: -1159519261
       explode-blue: 536750140
       explode-green: 2043206244
       explode-orange: -517343290
       explode-yellow: 1957835910
       heart_yellow: 769677318
       knife-gray: 455777384
+      pellet-green: 1183408950
       pellet-pink: 667368347
+      pellet-red: 708129500
       power-up-0: -1129069285
+      power-up-1: -630826333
+      power-up-2: -965700936
+      power-up-3: 812590675
+      power-up-4: -2134618685
+      power-up-5: -1107858955
       shard-cyan: 663284600
       shard_yellow: 672460282
       star-blue: -1878715164
       star-cyan: 232785815
+      star-red: 229207437
       star_yellow: -537755990
       touhou-bullets-spritesheet_0: 513246255
   mipmapLimitGroupName: 
