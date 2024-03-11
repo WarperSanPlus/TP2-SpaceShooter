@@ -8,7 +8,7 @@ public class SFX_Object : MonoBehaviour, IResetable
 
     private AudioSource source;
     private float timer = 0f;
-    
+
     #region MonoBehaviour
 
     /// <inheritdoc/>

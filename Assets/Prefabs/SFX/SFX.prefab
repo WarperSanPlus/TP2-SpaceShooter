@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3119076510876697884}
   - component: {fileID: 5454830135386762154}
-  - component: {fileID: 1370650407613582033}
+  - component: {fileID: 8613554981020238632}
   m_Layer: 0
   m_Name: SFX
   m_TagString: Untagged
@@ -129,7 +129,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1370650407613582033
+--- !u!114 &8613554981020238632
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

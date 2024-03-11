@@ -19,12 +19,6 @@ namespace Bullets
         /// <inheritdoc/>
         private void FixedUpdate() => this.TickTravel(Time.fixedDeltaTime);
 
-        /// <inheritdoc/>
-        private void OnDisable()
-        {
-            // Play animation
-        }
-
         #endregion MonoBehaviour
 
         #region Movement
